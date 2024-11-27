@@ -3,6 +3,7 @@ import math
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QGridLayout, QPushButton, QLabel
 from PyQt5.QtGui import QIcon
 from PyQt5.Qt import Qt
+from PyQt5 import QtCore
 
 
 class Calculator(QMainWindow):
@@ -406,7 +407,7 @@ class Calculator(QMainWindow):
             self.click_operator("-")
         elif e.key() == Qt.Key_Plus:
             self.click_operator("+")
-        elif e.key() == Qt.Key_Equal:
+        elif e.key() == QtCore.Qt.Key_Return or Qt.Key_Equal:
             self.tombol_hasil()
         elif e.key() == Qt.Key_Delete:
             self.ce_button()
