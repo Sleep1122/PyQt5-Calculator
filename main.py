@@ -406,7 +406,7 @@ class Calculator(QMainWindow):
             self.click_operator("-")
         elif e.key() == Qt.Key_Plus:
             self.click_operator("+")
-        elif e.key() == Qt.Key_Equal or Qt.Key_Return:
+        elif e.key() == Qt.Key_Equal:
             self.tombol_hasil()
         elif e.key() == Qt.Key_Delete:
             self.ce_button()
