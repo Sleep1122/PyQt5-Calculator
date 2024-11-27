@@ -28,3 +28,9 @@ $ pip install PyQt5
 ```
 
 And then run the `main.py` in your IDE
+
+# Preview Calculator
+![Calculator Preview](preview.png)
+
+# Disclaimer
+There is a highly chance that there is a bug on the calculator because it's my first project
