@@ -17,7 +17,9 @@ Microsoft Visual C++ 14.0 or greater is required
 
 Then you need to install [Microsoft Visual Studio Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
 
-and then select this
+
+Select this
+
 ![Microsoft Visual Studio Build Tools](cpp-installation.png)
 
 
