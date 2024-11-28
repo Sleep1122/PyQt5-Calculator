@@ -239,7 +239,7 @@ class Calculator(QMainWindow):
         self.persen.clicked.connect(self.percentage)
 
     def angka(self, num):
-        if len(self.numb) < 17:
+        if len(self.numb) < 16:
             if self.numb.startswith("0.") or "." in self.numb:
                 self.numb += num
             elif self.numb == "0":
