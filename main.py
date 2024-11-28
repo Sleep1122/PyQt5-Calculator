@@ -3,7 +3,6 @@ import math
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QGridLayout, QPushButton, QLabel
 from PyQt5.QtGui import QIcon
 from PyQt5.Qt import Qt
-from PyQt5 import QtCore
 
 
 class Calculator(QMainWindow):
@@ -240,13 +239,16 @@ class Calculator(QMainWindow):
         self.persen.clicked.connect(self.percentage)
 
     def angka(self, num):
-        if self.numb.startswith("0.") or "." in self.numb:
-            self.numb += num
-        elif self.numb == "0":
-            self.numb = num
+        if len(self.numb) < 17:
+            if self.numb.startswith("0.") or "." in self.numb:
+                self.numb += num
+            elif self.numb == "0":
+                self.numb = num
+            else:
+                self.numb = self.numb + num
+            self.numbers.setText("{:,}".format(int(self.numb)))
         else:
-            self.numb = self.numb + num
-        self.numbers.setText(self.numb)
+            pass
 
     def click_operator(self, operator):
         try:
@@ -262,7 +264,7 @@ class Calculator(QMainWindow):
 
             self.algorithms.setText(self.algo.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + "))
             self.numb = "0"
-            self.numbers.setText(self.numb)
+            self.numbers.setText("{:,}".format(int(self.numb)))
         except ZeroDivisionError:
             self.numb = "0"
             self.algo = ""
@@ -273,7 +275,7 @@ class Calculator(QMainWindow):
         try:
             if self.numb != "0":
                 if self.algo:
-                    if "/" or "-" or "+" or "*" in self.algo:
+                    if self.algo[-1] in "+-*/":
                         self.algo = self.algo + self.numb
                         hasil = str(eval(self.algo))
                         hasil = float(hasil)
@@ -281,10 +283,10 @@ class Calculator(QMainWindow):
                             hasil = str(int(hasil))
                         hasil = str(hasil)
                         self.algorithms.setText(self.algo.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + ") + " =")
-                        self.numbers.setText(hasil)
+                        self.numbers.setText("{:,}".format(int(hasil)))
                         self.algo = hasil
                         self.numb = ""
-                    elif "/" or "-" or "+" or "*" not in self.algo:
+                    elif self.algo[-1] not in "+-*/":
                         pass
                     else:
                         self.algo = self.numb
@@ -297,7 +299,7 @@ class Calculator(QMainWindow):
                         hasil = str(int(hasil))
                     hasil = str(hasil)
                     self.algorithms.setText(self.algo.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + ") + " =")
-                    self.numbers.setText(str(hasil))
+                    self.numbers.setText("{:,}".format(int(hasil)))
                     self.numb = str(hasil)
                     self.algo = hasil
                 else:
@@ -308,41 +310,41 @@ class Calculator(QMainWindow):
             self.algo = ""
             self.numbers.setText("Cant divide by Zero")
             self.algorithms.setText(self.algo)
-            
+
     def c_button(self):
         self.algo = ""
         self.numb = "0"
-        self.numbers.setText(self.numb)
+        self.numbers.setText("{:,}".format(int(self.numb)))
         self.algorithms.setText("")
 
     def ce_button(self):
         self.numb = "0"
-        self.numbers.setText(self.numb)
+        self.numbers.setText("{:,}".format(int(self.numb)))
 
     def backspace_button(self):
         self.numb = self.numb[:-1]
         if self.numb:
-            self.numbers.setText(self.numb)
+            self.numbers.setText("{:,}".format(int(self.numb)))
         else:
             self.numb = "0"
-            self.numbers.setText(self.numb)
+            self.numbers.setText("{:,}".format(int(self.numb)))
 
     def minus_plus(self):
         if self.numb == "0":
             pass
         elif self.numb[0] == "-":
             self.numb = self.numb[1:]
-            self.numbers.setText(self.numb)
+            self.numbers.setText("{:,}".format(int(self.numb)))
         else:
             self.numb = "-" + self.numb
-            self.numbers.setText(self.numb)
+            self.numbers.setText("{:,}".format(int(self.numb)))
 
     def satu_per_x(self):
         try:
             self.algo = "1/" + str(self.numb)
             self.algorithms.setText(f"1/({self.numb})")
             self.numb = str(eval(self.algo))
-            self.numbers.setText(self.numb)
+            self.numbers.setText("{:,}".format(int(self.numb)))
         except ZeroDivisionError:
             self.numbers.setText("Cant divide with a Zero")
         self.algo = self.numb
@@ -356,7 +358,7 @@ class Calculator(QMainWindow):
             squared_value = str(int(squared_value))
         squared_value = str(squared_value)
         self.algorithms.setText(f"sqr({self.numb})")
-        self.numbers.setText(squared_value)
+        self.numbers.setText("{:,}".format(int(squared_value)))
         self.numb = squared_value
 
     def square_root(self):
@@ -367,7 +369,7 @@ class Calculator(QMainWindow):
             root_value = str(int(root_value))
         root_value = str(root_value)
         self.algorithms.setText(f"√({self.numb})")
-        self.numbers.setText(root_value)
+        self.numbers.setText("{:,}".format(int(root_value)))
         self.numb = root_value
 
 
@@ -385,13 +387,13 @@ class Calculator(QMainWindow):
                 percentage_result = str(int(percentage_result))
             percentage_result = str(percentage_result)
             self.algorithms.setText(self.algo)
-            self.numbers.setText(percentage_result)
+            self.numbers.setText("{:,}".format(int(percentage_result)))
             self.numb = percentage_result
 
     def dot(self, dots):
         if "." not in self.numb:
             self.numb += dots
-            self.numbers.setText(self.numb)
+            self.numbers.setText("{:,}".format(int(self.numb)))
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_0:
