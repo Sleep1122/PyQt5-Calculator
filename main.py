@@ -283,27 +283,21 @@ class Calculator(QMainWindow):
                     self.numb = ""
                 elif "/" or "-" or "+" or "*" not in self.algo:
                     pass
-
-            elif self.numb == "0" and " =" not in self.algorithms.text():
-                self.algo = self.algo + self.numb
-                hasil = str(eval(self.algo))
-                self.algorithms.setText(
-                    self.algo.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + ") + " =")
-                self.numbers.setText(str(hasil))
-                self.numb = str(hasil)
-                self.algo = hasil
-
-            if self.numb == "0" and " =" in self.algorithms.text():
-                pass
-            else:
-                pass
+            elif self.numb == "0" and self.algo:
+                if self.algo[-1] in "+-*/":
+                    self.algo = self.algo + self.numb
+                    hasil = str(eval(self.algo))
+                    self.algorithms.setText(self.algo.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + ") + " =")
+                    self.numbers.setText(str(hasil))
+                    self.numb = str(hasil)
+                    self.algo = hasil
 
         except ZeroDivisionError:
             self.numb = "0"
             self.algo = ""
             self.numbers.setText("Cant divide by Zero")
             self.algorithms.setText(self.algo)
-
+            
     def c_button(self):
         self.algo = ""
         self.numb = "0"
