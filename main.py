@@ -294,6 +294,12 @@ class Calculator(QMainWindow):
                     self.algo = hasil
                 else:
                     self.algo = self.numb
+
+        except ZeroDivisionError:
+            self.numb = "0"
+            self.algo = ""
+            self.numbers.setText("Cant divide by Zero")
+            self.algorithms.setText(self.algo)
             
     def c_button(self):
         self.algo = ""
@@ -398,7 +404,7 @@ class Calculator(QMainWindow):
             self.click_operator("-")
         elif e.key() == Qt.Key_Plus:
             self.click_operator("+")
-        elif e.key() == QtCore.Qt.Key_Return or Qt.Key_Equal:
+        elif e.key() == Qt.Key_Equal:
             self.tombol_hasil()
         elif e.key() == Qt.Key_Delete:
             self.ce_button()
