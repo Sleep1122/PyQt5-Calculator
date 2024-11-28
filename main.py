@@ -276,6 +276,10 @@ class Calculator(QMainWindow):
                     if "/" or "-" or "+" or "*" in self.algo:
                         self.algo = self.algo + self.numb
                         hasil = str(eval(self.algo))
+                        hasil = float(hasil)
+                        if hasil.is_integer():
+                            hasil = str(int(hasil))
+                        hasil = str(hasil)
                         self.algorithms.setText(self.algo.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + ") + " =")
                         self.numbers.setText(hasil)
                         self.algo = hasil
@@ -288,6 +292,10 @@ class Calculator(QMainWindow):
                 if self.algo[-1] in "+-*/":
                     self.algo = self.algo + self.numb
                     hasil = str(eval(self.algo))
+                    hasil = float(hasil)
+                    if hasil.is_integer():
+                        hasil = str(int(hasil))
+                    hasil = str(hasil)
                     self.algorithms.setText(self.algo.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + ") + " =")
                     self.numbers.setText(str(hasil))
                     self.numb = str(hasil)
@@ -343,12 +351,20 @@ class Calculator(QMainWindow):
     def squared(self):
         squared_value = float(self.numb) ** 2
         squared_value = str(squared_value)
+        squared_value = float(squared_value)
+        if squared_value.is_integer():
+            squared_value = str(int(squared_value))
+        squared_value = str(squared_value)
         self.algorithms.setText(f"sqr({self.numb})")
         self.numbers.setText(squared_value)
         self.numb = squared_value
 
     def square_root(self):
         root_value = math.sqrt(int(self.numb))
+        root_value = str(root_value)
+        root_value = float(root_value)
+        if root_value.is_integer():
+            root_value = str(int(root_value))
         root_value = str(root_value)
         self.algorithms.setText(f"√({self.numb})")
         self.numbers.setText(root_value)
@@ -363,6 +379,10 @@ class Calculator(QMainWindow):
             whole = int(self.algo[:-1])
             percentage = int(self.numb)
             percentage_result = float((percentage * whole) / 100)
+            percentage_result = str(percentage_result)
+            percentage_result = float(percentage_result)
+            if percentage_result.is_integer():
+                percentage_result = str(int(percentage_result))
             percentage_result = str(percentage_result)
             self.algorithms.setText(self.algo)
             self.numbers.setText(percentage_result)
