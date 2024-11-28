@@ -269,19 +269,21 @@ class Calculator(QMainWindow):
             self.numbers.setText("Cant divide by Zero")
             self.algorithms.setText(self.algo.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + "))
 
-
     def tombol_hasil(self):
         try:
             if self.numb != "0":
-                if "/" or "-" or "+" or "*" in self.algo:
-                    self.algo = self.algo + self.numb
-                    hasil = str(eval(self.algo))
-                    self.algorithms.setText(self.algo.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + ") + " =")
-                    self.numbers.setText(hasil)
-                    self.algo = hasil
-                    self.numb = ""
-                elif "/" or "-" or "+" or "*" not in self.algo:
-                    pass
+                if self.algo:
+                    if "/" or "-" or "+" or "*" in self.algo:
+                        self.algo = self.algo + self.numb
+                        hasil = str(eval(self.algo))
+                        self.algorithms.setText(self.algo.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + ") + " =")
+                        self.numbers.setText(hasil)
+                        self.algo = hasil
+                        self.numb = ""
+                    elif "/" or "-" or "+" or "*" not in self.algo:
+                        pass
+                    else:
+                        self.algo = self.numb
             elif self.numb == "0" and self.algo:
                 if self.algo[-1] in "+-*/":
                     self.algo = self.algo + self.numb
@@ -290,12 +292,8 @@ class Calculator(QMainWindow):
                     self.numbers.setText(str(hasil))
                     self.numb = str(hasil)
                     self.algo = hasil
-
-        except ZeroDivisionError:
-            self.numb = "0"
-            self.algo = ""
-            self.numbers.setText("Cant divide by Zero")
-            self.algorithms.setText(self.algo)
+                else:
+                    self.algo = self.numb
             
     def c_button(self):
         self.algo = ""
