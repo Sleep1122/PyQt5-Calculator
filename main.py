@@ -253,10 +253,8 @@ class Calculator(QMainWindow):
             if self.algo:
                 if self.numb != "0":
                     self.algo += self.numb
-
                 if self.algo[-1] in "+-*/":
                     self.algo = self.algo[:-1] + operator
-
                 else:
                     self.algo = str(eval(self.algo)) + operator
             else:
@@ -270,6 +268,7 @@ class Calculator(QMainWindow):
             self.algo = ""
             self.numbers.setText("Cant divide by Zero")
             self.algorithms.setText(self.algo.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + "))
+
 
     def tombol_hasil(self):
         try:
