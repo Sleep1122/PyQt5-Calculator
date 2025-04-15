@@ -1,5 +1,4 @@
-import sys
-import math
+import sys, math
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QGridLayout, QPushButton, QLabel
 from PyQt5.QtGui import QIcon
 from PyQt5.Qt import Qt
@@ -13,11 +12,9 @@ class Calculator(QMainWindow):
         self.setGeometry(292, 223, 400, 635)
         self.setWindowIcon(QIcon('calculator icon.png'))
 
-        self.numb = "0"
-        self.algo = ""
+        self.numb, self.algo = "0", ""
 
-        self.algorithms = QLabel(self)
-        self.numbers = QLabel(self)
+        self.algorithms, self.numbers = QLabel(self), QLabel(self)
 
         self.button_0 = QPushButton("0", self)
         self.button_1 = QPushButton("1", self)
@@ -49,9 +46,8 @@ class Calculator(QMainWindow):
         self.satu_per_angka = QPushButton("⅟x", self)
         self.plus_minus = QPushButton("±", self)
 
-
-
         self.ui()
+
     def ui(self):
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
@@ -221,7 +217,7 @@ class Calculator(QMainWindow):
         self.button_7.clicked.connect(lambda: self.angka("7"))
         self.button_8.clicked.connect(lambda: self.angka("8"))
         self.button_9.clicked.connect(lambda: self.angka("9"))
-        self.koma.clicked.connect(lambda: self.dot("."))
+        self.koma.clicked.connect(lambda: self.dot())
 
         self.bagi.clicked.connect(lambda: self.click_operator("/"))
         self.kali.clicked.connect(lambda: self.click_operator("*"))
@@ -376,9 +372,9 @@ class Calculator(QMainWindow):
             self.numb = percentage
             self.settext(self.numb)
 
-    def dot(self, dots):
+    def dot(self):
         if "." not in self.numb:
-            self.numb += dots
+            self.numb += "."
             self.settext(self.numb)
 
     def settext(self, number):
@@ -394,52 +390,53 @@ class Calculator(QMainWindow):
         self.algorithms.setText(algorithms.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + "))
 
     def keyPressEvent(self, e):
-        if e.key() == Qt.Key_0:
-            self.angka("0")
-        elif e.key() == Qt.Key_1:
-            self.angka("1")
-        elif e.key() == Qt.Key_2:
-            self.angka("2")
-        elif e.key() == Qt.Key_3:
-            self.angka("3")
-        elif e.key() == Qt.Key_4:
-            self.angka("4")
-        elif e.key() == Qt.Key_5:
-            self.angka("6")
-        elif e.key() == Qt.Key_6:
-            self.angka("6")
-        elif e.key() == Qt.Key_7:
-            self.angka("7")
-        elif e.key() == Qt.Key_8:
-            self.angka("8")
-        elif e.key() == Qt.Key_9:
-            self.angka("9")
-        elif e.key() == Qt.Key_Period:
-            self.dot(".")
-        elif e.key() == Qt.Key_Slash:
-            self.click_operator("/")
-        elif e.key() == Qt.Key_Asterisk:
-            self.click_operator("*")
-        elif e.key() == Qt.Key_Minus:
-            self.click_operator("-")
-        elif e.key() == Qt.Key_Plus:
-            self.click_operator("+")
-        elif e.key() == Qt.Key_Equal:
-            self.tombol_hasil()
-        elif e.key() == Qt.Key_Delete:
-            self.ce_button()
-        elif e.key() == Qt.Key_Escape:
-            self.c_button()
-        elif e.key() == Qt.Key_Backspace:
-            self.backspace_button()
-        elif e.key() == Qt.Key_Q:
-            self.squared()
-        elif e.key() == Qt.Key_At:
-            self.square_root()
-        elif e.key() == Qt.Key_Percent:
-            self.percentage()
-        elif e.key() == Qt.Key_R:
-            self.satu_per_x()
+        match e.key():
+            case Qt.Key_0:
+                self.angka("0")
+            case Qt.Key_1:
+                self.angka("1")
+            case Qt.Key_2:
+                self.angka("2")
+            case Qt.Key_3:
+                self.angka("3")
+            case Qt.Key_4:
+                self.angka("4")
+            case Qt.Key_5:
+                self.angka("5")
+            case Qt.Key_6:
+                self.angka("6")
+            case Qt.Key_7:
+                self.angka("7")
+            case Qt.Key_8:
+                self.angka("8")
+            case Qt.Key_9:
+                self.angka("9")
+            case Qt.Key_Period:
+                self.dot()
+            case Qt.Key_Slash:
+                self.click_operator("/")
+            case Qt.Key_Asterisk:
+                self.click_operator("*")
+            case Qt.Key_Minus:
+                self.click_operator("-")
+            case Qt.Key_Plus:
+                self.click_operator("+")
+            case Qt.Key_Equal :
+                self.tombol_hasil()
+            case Qt.Key_Delete:
+                self.ce_button()
+            case Qt.Key_Escape:
+                self.c_button()
+            case Qt.Key_Backspace:
+                self.backspace_button()
+            case Qt.Key_Q:
+                self.squared()
+            case Qt.Key_At:
+                self.square_root()
+            case Qt.Key_Percent:
+                self.percentage()
+            case Qt.Key_R:
+                self.satu_per_x()
 
 def main():
     app = QApplication(sys.argv)
