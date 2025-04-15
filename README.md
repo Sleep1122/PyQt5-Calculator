@@ -2,7 +2,7 @@
 I made this Calculator as my first project so ignore the messy code that i made because im still a beginner at coding
 
 # Requirements
-For my calculator to work you need to install [Python](https://python.org), Since my calculator depends on PyQt5 to work
+For my calculator to work you need to install at least [Python](https://python.org) 3.10+, Since my calculator depends on PyQt5 to work
 
 Then after you done installing it you need to install PyQt5 with the following commands with terminal
 ```sh
