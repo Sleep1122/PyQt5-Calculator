@@ -2,11 +2,11 @@
 I made this Calculator as my first project so ignore the messy code that i made because im still a beginner at coding
 
 # Requirements
-For my calculator to work you need to install at least [Python](https://python.org) 3.10+, Since my calculator depends on PyQt5 to work
+For my calculator to work you need to install at least [Python](https://python.org) 3.10+
 
-Then after you done installing it you need to install PyQt5 with the following commands with terminal
+Then after you done installing it you need to install packages from the requirements.txt with the following commands with terminal
 ```sh
-$ pip install PyQt5
+$ pip install -r requirements.txt
 ```
 
 # Issues
@@ -26,7 +26,7 @@ Select this
 
 and then click install after that try type in the following command again with terminal
 ```sh
-$ pip install PyQt5
+$ pip install -r requirements.txt
 ```
 
 And then run the `main.py` in your IDE
