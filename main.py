@@ -29,21 +29,21 @@ class Calculator(QMainWindow):
 
         self.numbers.setText(self.numb)
 
-        self.bagi = QPushButton("÷", self)
-        self.kali = QPushButton("×", self)
-        self.kurang = QPushButton("-", self)
-        self.tambah = QPushButton("+", self)
+        self.division = QPushButton("÷", self)
+        self.times = QPushButton("×", self)
+        self.minus = QPushButton("-", self)
+        self.plus = QPushButton("+", self)
 
-        self.sama_dengan = QPushButton("=", self)
+        self.equals = QPushButton("=", self)
         self.ce = QPushButton("CE", self)
         self.c = QPushButton("C", self)
         self.backspace = QPushButton("⌫", self)
 
-        self.pangkat = QPushButton("x²", self)
-        self.akar = QPushButton("²√x", self)
-        self.koma = QPushButton(".", self)
-        self.persen = QPushButton("%", self)
-        self.satu_per_angka = QPushButton("⅟x", self)
+        self.square = QPushButton("x²", self)
+        self.square_root = QPushButton("²√x", self)
+        self.coma = QPushButton(".", self)
+        self.percent = QPushButton("%", self)
+        self.reciprocal = QPushButton("⅟x", self)
         self.plus_minus = QPushButton("±", self)
 
         self.ui()
@@ -62,33 +62,32 @@ class Calculator(QMainWindow):
         grid.addWidget(self.algorithms, 0, 0, 0, 4)
         grid.addWidget(self.numbers, 1, 0, 1, 4)
 
-
         grid.addWidget(self.plus_minus, 7, 0)
         grid.addWidget(self.button_0, 7, 1)
-        grid.addWidget(self.koma, 7, 2)
-        grid.addWidget(self.sama_dengan, 7, 3)
+        grid.addWidget(self.coma, 7, 2)
+        grid.addWidget(self.equals, 7, 3)
 
         grid.addWidget(self.button_1, 6, 0)
         grid.addWidget(self.button_2, 6, 1)
         grid.addWidget(self.button_3, 6, 2)
-        grid.addWidget(self.tambah, 6, 3)
+        grid.addWidget(self.plus, 6, 3)
 
         grid.addWidget(self.button_4, 5, 0)
         grid.addWidget(self.button_5, 5, 1)
         grid.addWidget(self.button_6, 5, 2)
-        grid.addWidget(self.kurang, 5, 3)
+        grid.addWidget(self.minus, 5, 3)
 
         grid.addWidget(self.button_7, 4, 0)
         grid.addWidget(self.button_8, 4, 1)
         grid.addWidget(self.button_9, 4, 2)
-        grid.addWidget(self.kali, 4, 3)
+        grid.addWidget(self.times, 4, 3)
 
-        grid.addWidget(self.satu_per_angka, 3, 0)
-        grid.addWidget(self.pangkat, 3, 1)
-        grid.addWidget(self.akar, 3, 2)
-        grid.addWidget(self.bagi, 3, 3)
+        grid.addWidget(self.reciprocal, 3, 0)
+        grid.addWidget(self.square, 3, 1)
+        grid.addWidget(self.square_root, 3, 2)
+        grid.addWidget(self.division, 3, 3)
 
-        grid.addWidget(self.persen, 2, 0)
+        grid.addWidget(self.percent, 2, 0)
         grid.addWidget(self.ce, 2, 1)
         grid.addWidget(self.c, 2, 2)
         grid.addWidget(self.backspace, 2, 3)
@@ -110,23 +109,22 @@ class Calculator(QMainWindow):
         self.button_7.setObjectName("numbers")
         self.button_8.setObjectName("numbers")
         self.button_9.setObjectName("numbers")
-        self.koma.setObjectName("numbers")
+        self.coma.setObjectName("numbers")
         self.plus_minus.setObjectName("numbers")
 
-        self.ce.setObjectName("fungsi_lain")
-        self.c.setObjectName("fungsi_lain")
+        self.ce.setObjectName("other_function")
+        self.c.setObjectName("other_function")
         self.backspace.setObjectName("operators")
-        self.bagi.setObjectName("operators")
-        self.kali.setObjectName("operators")
-        self.kurang.setObjectName("operators")
-        self.tambah.setObjectName("operators")
-        self.pangkat.setObjectName("fungsi_lain")
-        self.akar.setObjectName("fungsi_lain")
-        self.persen.setObjectName("fungsi_lain")
-        self.satu_per_angka.setObjectName("fungsi_lain")
+        self.division.setObjectName("operators")
+        self.times.setObjectName("operators")
+        self.minus.setObjectName("operators")
+        self.plus.setObjectName("operators")
+        self.square.setObjectName("other_function")
+        self.square_root.setObjectName("other_function")
+        self.percent.setObjectName("other_function")
+        self.reciprocal.setObjectName("other_function")
 
-        self.sama_dengan.setObjectName("sama_dengan")
-
+        self.equals.setObjectName("equals")
 
         self.setStyleSheet("""
             QMainWindow{
@@ -178,69 +176,69 @@ class Calculator(QMainWindow):
                 background-color:#323232;
                 color:#ffffff;
             }
-            QPushButton#fungsi_lain{
+            QPushButton#other_function{
                 font-size:16px;
                 padding:23px;
                 background-color:#323232;
                 color:#ffffff;
             }
-            QPushButton#fungsi_lain:hover{
+            QPushButton#other_function:hover{
                 background-color:#3b3b3b;
                 color:#ffffff;
             }
-            QPushButton#fungsi_lain:pressed{
+            QPushButton#other_function:pressed{
                 background-color:#323232;
                 color:#ffffff;
             }
-            QPushButton#sama_dengan{
+            QPushButton#equals{
                 font-size:27px;
                 padding:15px;
                 background-color:#76b9ed;
             }
-            QPushButton#sama_dengan:hover{
+            QPushButton#equals:hover{
                 background-color:#6da9d8;
             }
-            QPushButton#sama_dengan:pressed{
+            QPushButton#equals:pressed{
                 background-color:#649ac3;
             }
-            
-            
+
+
         """)
 
-        self.button_0.clicked.connect(lambda: self.angka("0"))
-        self.button_1.clicked.connect(lambda: self.angka("1"))
-        self.button_2.clicked.connect(lambda: self.angka("2"))
-        self.button_3.clicked.connect(lambda: self.angka("3"))
-        self.button_4.clicked.connect(lambda: self.angka("4"))
-        self.button_5.clicked.connect(lambda: self.angka("5"))
-        self.button_6.clicked.connect(lambda: self.angka("6"))
-        self.button_7.clicked.connect(lambda: self.angka("7"))
-        self.button_8.clicked.connect(lambda: self.angka("8"))
-        self.button_9.clicked.connect(lambda: self.angka("9"))
-        self.koma.clicked.connect(lambda: self.dot())
+        self.button_0.clicked.connect(lambda: self.number("0"))
+        self.button_1.clicked.connect(lambda: self.number("1"))
+        self.button_2.clicked.connect(lambda: self.number("2"))
+        self.button_3.clicked.connect(lambda: self.number("3"))
+        self.button_4.clicked.connect(lambda: self.number("4"))
+        self.button_5.clicked.connect(lambda: self.number("5"))
+        self.button_6.clicked.connect(lambda: self.number("6"))
+        self.button_7.clicked.connect(lambda: self.number("7"))
+        self.button_8.clicked.connect(lambda: self.number("8"))
+        self.button_9.clicked.connect(lambda: self.number("9"))
+        self.coma.clicked.connect(lambda: self.dot())
 
-        self.bagi.clicked.connect(lambda: self.click_operator("/"))
-        self.kali.clicked.connect(lambda: self.click_operator("*"))
-        self.kurang.clicked.connect(lambda: self.click_operator("-"))
-        self.tambah.clicked.connect(lambda: self.click_operator("+"))
+        self.division.clicked.connect(lambda: self.click_operator("/"))
+        self.times.clicked.connect(lambda: self.click_operator("*"))
+        self.minus.clicked.connect(lambda: self.click_operator("-"))
+        self.plus.clicked.connect(lambda: self.click_operator("+"))
 
-        self.sama_dengan.clicked.connect(self.tombol_hasil)
+        self.equals.clicked.connect(self.equals_button)
         self.c.clicked.connect(self.c_button)
         self.ce.clicked.connect(self.ce_button)
         self.backspace.clicked.connect(self.backspace_button)
         self.plus_minus.clicked.connect(self.minus_plus)
-        self.satu_per_angka.clicked.connect(self.satu_per_x)
-        self.pangkat.clicked.connect(self.squared)
-        self.akar.clicked.connect(self.square_root)
-        self.persen.clicked.connect(self.percentage)
+        self.reciprocal.clicked.connect(self.reciprocal_function)
+        self.square.clicked.connect(self.squared)
+        self.square_root.clicked.connect(self.squared_root)
+        self.percent.clicked.connect(self.percentage)
 
-    def angka(self, num):
+    def number(self, num):
         if len(self.numb) < 16:
             if self.numb == "0":
                 self.numb = num
             else:
                 self.numb += num
-        self.settext(self.numb)
+        self.set_text(self.numb)
 
     def click_operator(self, operator):
         try:
@@ -256,27 +254,29 @@ class Calculator(QMainWindow):
 
             self.set_algorithms(self.algo)
             self.numb = "0"
-            self.settext(self.numb)
+            self.set_text(self.numb)
         except ZeroDivisionError:
             self.numb = "0"
             self.algo = ""
             self.numbers.setText("Cant divide by Zero")
             self.set_algorithms(self.algo)
 
-    def tombol_hasil(self):
+    def equals_button(self):
         try:
             if self.numb != "0":
                 if self.algo:
                     if self.algo[-1] in "+-*/":
                         self.algo = self.algo + self.numb
-                        hasil = str(eval(self.algo))
-                        hasil = float(hasil)
-                        if hasil.is_integer():
-                            hasil = str(int(hasil))
-                        hasil = str(hasil)
-                        self.algorithms.setText(self.algo.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + ") + " =")
-                        self.settext(hasil)
-                        self.algo = hasil
+                        result = str(eval(self.algo))
+                        result = float(result)
+                        if result.is_integer():
+                            result = str(int(result))
+                        result = str(result)
+                        self.algorithms.setText(
+                            self.algo.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+",
+                                                                                                          " + ") + " =")
+                        self.set_text(result)
+                        self.algo = result
                         self.numb = ""
                     elif self.algo[-1] not in "+-*/":
                         pass
@@ -285,15 +285,17 @@ class Calculator(QMainWindow):
             elif self.numb == "0" and self.algo:
                 if self.algo[-1] in "+-*/":
                     self.algo = self.algo + self.numb
-                    hasil = str(eval(self.algo))
-                    hasil = float(hasil)
-                    if hasil.is_integer():
-                        hasil = str(int(hasil))
-                    hasil = str(hasil)
-                    self.algorithms.setText(self.algo.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + ") + " =")
-                    self.settext(hasil)
-                    self.numb = str(hasil)
-                    self.algo = hasil
+                    result = str(eval(self.algo))
+                    result = float(result)
+                    if result.is_integer():
+                        result = str(int(result))
+                    result = str(result)
+                    self.algorithms.setText(
+                        self.algo.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+",
+                                                                                                      " + ") + " =")
+                    self.set_text(result)
+                    self.numb = str(result)
+                    self.algo = result
                 else:
                     self.algo = self.numb
 
@@ -306,37 +308,37 @@ class Calculator(QMainWindow):
     def c_button(self):
         self.algo = ""
         self.numb = "0"
-        self.settext(self.numb)
+        self.set_text(self.numb)
         self.algorithms.setText("")
 
     def ce_button(self):
         self.numb = "0"
-        self.settext(self.numb)
+        self.set_text(self.numb)
 
     def backspace_button(self):
         self.numb = self.numb[:-1]
         if self.numb:
-            self.settext(self.numb)
+            self.set_text(self.numb)
         else:
             self.numb = "0"
-            self.settext(self.numb)
+            self.set_text(self.numb)
 
     def minus_plus(self):
         if self.numb == "0":
             pass
         elif self.numb[0] == "-":
             self.numb = self.numb[1:]
-            self.settext(self.numb)
+            self.set_text(self.numb)
         else:
             self.numb = "-" + self.numb
-            self.settext(self.numb)
+            self.set_text(self.numb)
 
-    def satu_per_x(self):
+    def reciprocal_function(self):
         try:
             self.algo = "1/" + str(self.numb)
             self.algorithms.setText(f"1/({self.numb})")
             self.numb = str(eval(self.algo))
-            self.settext(self.numb)
+            self.set_text(self.numb)
         except ZeroDivisionError:
             self.numbers.setText("Cant divide with a Zero")
         self.algo = self.numb
@@ -351,7 +353,7 @@ class Calculator(QMainWindow):
             self.numbers.setText(str(squared_value))
         self.numb = squared_value
 
-    def square_root(self):
+    def squared_root(self):
         root_value = math.sqrt(int(self.numb))
         self.set_algorithms(f"√({self.numb})")
         if root_value.is_integer():
@@ -359,7 +361,6 @@ class Calculator(QMainWindow):
         else:
             self.numbers.setText(str(root_value))
         self.numb = root_value
-
 
     def percentage(self):
         if self.algo == "":
@@ -370,14 +371,14 @@ class Calculator(QMainWindow):
             percentage = str(percentage)
             self.set_algorithms(self.algo)
             self.numb = percentage
-            self.settext(self.numb)
+            self.set_text(self.numb)
 
     def dot(self):
         if "." not in self.numb:
             self.numb += "."
-            self.settext(self.numb)
+            self.set_text(self.numb)
 
-    def settext(self, number):
+    def set_text(self, number):
         if number.endswith(".") or "." in number:
             self.numbers.setText(number)
         else:
@@ -387,30 +388,31 @@ class Calculator(QMainWindow):
                 self.numbers.setText(number)
 
     def set_algorithms(self, algorithms):
-        self.algorithms.setText(algorithms.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + "))
+        self.algorithms.setText(
+            algorithms.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + "))
 
     def keyPressEvent(self, e):
         match e.key():
             case Qt.Key_0:
-                self.angka("0")
+                self.number("0")
             case Qt.Key_1:
-                self.angka("1")
+                self.number("1")
             case Qt.Key_2:
-                self.angka("2")
+                self.number("2")
             case Qt.Key_3:
-                self.angka("3")
+                self.number("3")
             case Qt.Key_4:
-                self.angka("4")
+                self.number("4")
             case Qt.Key_5:
-                self.angka("5")
+                self.number("5")
             case Qt.Key_6:
-                self.angka("6")
+                self.number("6")
             case Qt.Key_7:
-                self.angka("7")
+                self.number("7")
             case Qt.Key_8:
-                self.angka("8")
+                self.number("8")
             case Qt.Key_9:
-                self.angka("9")
+                self.number("9")
             case Qt.Key_Period:
                 self.dot()
             case Qt.Key_Slash:
@@ -421,8 +423,8 @@ class Calculator(QMainWindow):
                 self.click_operator("-")
             case Qt.Key_Plus:
                 self.click_operator("+")
-            case Qt.Key_Equal :
-                self.tombol_hasil()
+            case Qt.Key_Equal:
+                self.equals_button()
             case Qt.Key_Delete:
                 self.ce_button()
             case Qt.Key_Escape:
@@ -432,17 +434,19 @@ class Calculator(QMainWindow):
             case Qt.Key_Q:
                 self.squared()
             case Qt.Key_At:
-                self.square_root()
+                self.squared_root()
             case Qt.Key_Percent:
                 self.percentage()
             case Qt.Key_R:
-                self.satu_per_x()
+                self.reciprocal_function()
+
 
 def main():
     app = QApplication(sys.argv)
     window = Calculator()
     window.show()
     sys.exit(app.exec_())
+
 
 if __name__ == '__main__':
     main()
