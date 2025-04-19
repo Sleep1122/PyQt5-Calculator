@@ -272,9 +272,7 @@ class Calculator(QMainWindow):
                         if result.is_integer():
                             result = str(int(result))
                         result = str(result)
-                        self.algorithms.setText(
-                            self.algo.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+",
-                                                                                                          " + ") + " =")
+                        self.algorithms.setText(self.algo.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + ") + " =")
                         self.set_text(result)
                         self.algo = result
                         self.numb = ""
@@ -290,9 +288,7 @@ class Calculator(QMainWindow):
                     if result.is_integer():
                         result = str(int(result))
                     result = str(result)
-                    self.algorithms.setText(
-                        self.algo.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+",
-                                                                                                      " + ") + " =")
+                    self.algorithms.setText(self.algo.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + ") + " =")
                     self.set_text(result)
                     self.numb = str(result)
                     self.algo = result
@@ -367,10 +363,11 @@ class Calculator(QMainWindow):
             self.numb = "0"
             self.numbers.setText(self.numb)
         else:
-            percentage = int(self.numb) / 100
-            percentage = str(percentage)
+            percentage = float(self.algo[:-1]) * (int(self.numb) / 100)
+            if percentage.is_integer():
+                percentage = int(percentage)
             self.set_algorithms(self.algo)
-            self.numb = percentage
+            self.numb = str(percentage)
             self.set_text(self.numb)
 
     def dot(self):
@@ -388,8 +385,7 @@ class Calculator(QMainWindow):
                 self.numbers.setText(number)
 
     def set_algorithms(self, algorithms):
-        self.algorithms.setText(
-            algorithms.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + "))
+        self.algorithms.setText(algorithms.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + "))
 
     def keyPressEvent(self, e):
         match e.key():
