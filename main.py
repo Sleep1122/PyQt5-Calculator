@@ -3,7 +3,6 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QGridLayout, QPu
 from PyQt5.QtGui import QIcon
 from PyQt5.Qt import Qt
 
-
 class Calculator(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -409,7 +408,7 @@ class Calculator(QMainWindow):
                 self.reciprocal_function()
 
 def formatted_display_algorithms(algorithms):
-    return algorithms.replace("*", " × ").replace("/", " ÷ ").replace("-", " - ").replace("+", " + ")
+    return algorithms.replace("*", "×").replace("/", "÷").replace("-", "-").replace("+", "+")
 
 def format_display_number(number):
     if number.endswith(".") or "." in number:
